@@ -3,6 +3,8 @@
  * @author march
  */
 package modelo;
+ import dao.CentroAtencionDAO;
+import java.sql.SQLException;
 
 public class CentroAtencion {
     private int codigo;
@@ -26,7 +28,16 @@ public class CentroAtencion {
         this.capacidad = capacidad;
         this.tipo = tipo;
     }
-
+    
+    public boolean guardar() {
+        try {
+            CentroAtencionDAO.insertar(nombre, lugar, tipo, capacidad);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
     public int getCodigo() {
         return codigo;
     }
