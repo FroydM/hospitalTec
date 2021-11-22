@@ -9,14 +9,14 @@ import java.time.LocalDate;
  */
 public class Funcionario extends Persona {
   
-    private String tipo;
+    private TipoFuncionario tipo;
     private LocalDate fechaIngreso;
     private Area area;
    
     
-    public Funcionario(){
+    public Funcionario (){
+        this.tipo=null;
         super(0, "", "", "");
-        this.tipo="";
         this.fechaIngreso= null;
     }
     
@@ -28,7 +28,7 @@ public class Funcionario extends Persona {
      * @param pArea, el área mediaca a la que pertenece
      */
 
-    public Funcionario(int pCedula, String pNombre, String pApellido1, String pApellido2, String pTipo,
+    public Funcionario(int pCedula, String pNombre, String pApellido1, String pApellido2, TipoFuncionario pTipo,
             LocalDate pFechaIngreso, Area pArea) {
         
         super(pCedula,pNombre,pApellido1,pApellido2);
@@ -41,7 +41,7 @@ public class Funcionario extends Persona {
      * 
      */   
 
-    public String getTipo() {
+    public TipoFuncionario getTipo() {
         return tipo;
     }
 
@@ -49,7 +49,7 @@ public class Funcionario extends Persona {
         return area;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoFuncionario tipo) {
         this.tipo = tipo;
     }
 
