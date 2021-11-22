@@ -1,6 +1,6 @@
 /**
  *
- * @author march
+ * @author Froyd and Melanie
  */
 package dao;
 
@@ -19,7 +19,7 @@ public class ConfigurationSQL {
      */
     protected static void open()throws SQLException{
 
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=dbSGPE;";
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=dbHospitalTec;";
         
         cn = DriverManager.getConnection(url,USER,PASSWORD);     
     }

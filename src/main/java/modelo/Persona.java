@@ -57,7 +57,14 @@ public class Persona {
     public void setApellido2(String apellido2) {
         this.apellido2 = apellido2;
     }
-    
+    @Override
+    public String toString() {
+        String msg = "Idenficacion: "+getCedula() + "\n";
+        msg += "Nombre: " + getNombre()+"\n";
+        msg+= "Apellido1: " + getApellido1() + "\n";
+        msg+= "Apellido2: " +getApellido2()+"\n";
+        return msg;
+    }
     
     
 }
