@@ -14,7 +14,8 @@ public class Funcionario extends Persona {
     private Area area;
    
     
-    public Funcionario (){
+    public Funcionario(){
+        super(0, "", "", "");
         this.tipo="";
         this.fechaIngreso= null;
     }

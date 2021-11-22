@@ -36,7 +36,12 @@ public class Area {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+    @Override
+    public String toString(){
+        String msg = "Codigo: "+getCodigo()+"\n";
+        msg += "Nombre: " +getNombre()+"\n";
+        return msg;
+    }
     
     
 }

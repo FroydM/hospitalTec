@@ -1,6 +1,6 @@
 /**
  *
- * @author march
+ * @author Froyd and Melanie
  */
 package dao;
 

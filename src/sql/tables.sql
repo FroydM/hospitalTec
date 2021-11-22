@@ -14,15 +14,17 @@ id INT IDENTITY(1,1) PRIMARY KEY,
 nombre VARCHAR(50) NOT NULL,
 );
 
-CREATE TABLE [PERSONA](
+DROP TABLE [PERSONA](
 identificacion INT PRIMARY KEY NOT NULL,
 nombre VARCHAR(50) NOT NULL,
-apellidos VARCHAR(50) NOT NULL
-):
+apellido1 VARCHAR(50) NOT NULL,
+apellido2 VARCHAR(50) NOT NULL
+);
 
 CREATE TABLE [PACIENTE](
 identificacion INT PRIMARY KEY FOREIGN KEY (identificacion) REFERENCES PERSONA(identificacion),
 tipoSangre VARCHAR(10) NOT NULL,
+fechaNacimiento DATE NOT NULL,
 nacionalidad VARCHAR(50) NOT NULL,
 lugarResidencia VARCHAR(50) NOT NULL,
 correo VARCHAR(150) NOT NULL

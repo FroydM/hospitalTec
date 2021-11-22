@@ -1,6 +1,6 @@
 /**
  *
- * @author march
+ * @author Froyd and Melanie
  */
 package dao;
 
@@ -38,7 +38,9 @@ public class CentroAtencionDAO{
         }
     }
     /**
-     * 
+     * Este metodo se encarga de llamar al procedimiento 
+     * en la base de datos y obtener el resultado de todos los centros de atencion
+     * @return Listado de centros de atentecion
      * @throws SQLException 
      */
     public static LinkedList<CentroAtencion> obtener() throws SQLException {
