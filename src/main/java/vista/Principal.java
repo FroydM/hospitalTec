@@ -176,13 +176,6 @@ public class Principal extends javax.swing.JFrame {
         forma.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        
-        Registrarse forma = new Registrarse();
-        this.PanelP.add(forma);
-        forma.show();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         RegistroVacuna forma = new RegistroVacuna();
         this.PanelP.add(forma);
@@ -206,6 +199,13 @@ public class Principal extends javax.swing.JFrame {
         this.PanelP.add(forma);
         forma.show();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        
+        RegistroDatosPaciente forma = new RegistroDatosPaciente();
+        this.PanelP.add(forma);
+        forma.show();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments

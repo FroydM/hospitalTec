@@ -5,12 +5,12 @@ package vista;
  *
  * @author SITARE
  */
-public class Registrarse extends javax.swing.JInternalFrame {
+public class RegistroDatosPaciente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CrearCita
      */
-    public Registrarse() {
+    public RegistroDatosPaciente() {
         initComponents();
     }
 
@@ -48,8 +48,8 @@ public class Registrarse extends javax.swing.JInternalFrame {
         txtTel1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        btnEliminar = new javax.swing.JButton();
-        btnAgregar = new javax.swing.JButton();
+        btnEliminarTeñ = new javax.swing.JButton();
+        btnAgregarTel = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setClosable(true);
@@ -139,11 +139,11 @@ public class Registrarse extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, 120, 90));
 
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/boton-menos.png"))); // NOI18N
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 280, -1, -1));
+        btnEliminarTeñ.setText("Eliminar");
+        jPanel1.add(btnEliminarTeñ, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, -1, -1));
 
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/anadir.png"))); // NOI18N
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, -1, -1));
+        btnAgregarTel.setText("Agregar");
+        jPanel1.add(btnAgregarTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,8 +180,8 @@ public class Registrarse extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnAgregarTel;
+    private javax.swing.JButton btnEliminarTeñ;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
