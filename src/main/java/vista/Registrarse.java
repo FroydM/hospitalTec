@@ -33,19 +33,23 @@ public class Registrarse extends javax.swing.JInternalFrame {
         txtApellido1 = new javax.swing.JTextField();
         txtApellido2 = new javax.swing.JTextField();
         txtSangre = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
-        txtCanton = new javax.swing.JTextField();
         txtProvincia = new javax.swing.JTextField();
         txtNacionalidad = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
         txtFechaNacimiento = new javax.swing.JFormattedTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtEmail1 = new javax.swing.JTextField();
+        txtTel1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        btnEliminar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setClosable(true);
@@ -63,7 +67,7 @@ public class Registrarse extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 190, 40));
 
         jLabel2.setText("Nacionalidad:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
 
         jLabel3.setText("Nombre: ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
@@ -73,17 +77,10 @@ public class Registrarse extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Apellido 1:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 200, 20));
-        jPanel1.add(txtApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 200, 20));
-        jPanel1.add(txtApellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 200, 20));
-        jPanel1.add(txtSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 200, 20));
-
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 200, 20));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 200, 20));
+        jPanel1.add(txtApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 200, 20));
+        jPanel1.add(txtApellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 200, 20));
+        jPanel1.add(txtSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 200, 20));
 
         jLabel6.setText("Apellido 2: ");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
@@ -91,49 +88,62 @@ public class Registrarse extends javax.swing.JInternalFrame {
         jLabel7.setText("Identificación:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        jLabel8.setText("Provincia:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, -1, -1));
-
-        jLabel9.setText("Email:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, -1, -1));
+        jLabel8.setText("Residencia");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, -1, -1));
 
         jLabel10.setText("Fecha de nacimiento:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
-
-        jLabel11.setText("Cantón:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, -1, -1));
-        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 200, 20));
-
-        txtCanton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtCanton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 200, 20));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 200, 20));
 
         txtProvincia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProvinciaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 200, 20));
+        jPanel1.add(txtProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, 200, 20));
 
         txtNacionalidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNacionalidadActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 200, 20));
+        jPanel1.add(txtNacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 200, 20));
 
+        btnRegistrar.setBackground(new java.awt.Color(0, 204, 51));
         btnRegistrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnRegistrar.setText("Registrarse");
-        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrarMouseClicked(evt);
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 170, 60));
+        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 200, -1));
+
+        jLabel11.setText("Email:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, -1, -1));
+
+        jLabel12.setText("Teléfono 1");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, -1, -1));
+
+        txtEmail1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmail1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 170, 60));
-        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 200, -1));
+        jPanel1.add(txtEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 200, 20));
+
+        txtTel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTel1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtTel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 200, 20));
+
+        jScrollPane1.setViewportView(jList1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, 120, 90));
+
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/boton-menos.png"))); // NOI18N
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 280, -1, -1));
+
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/anadir.png"))); // NOI18N
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,35 +156,37 @@ public class Registrarse extends javax.swing.JInternalFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        getAccessibleContext().setAccessibleDescription("");
+        getAccessibleContext().setAccessibleParent(this);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+    private void txtTel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTel1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
+    }//GEN-LAST:event_txtTel1ActionPerformed
 
-    private void txtCantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantonActionPerformed
+    private void txtEmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantonActionPerformed
-
-    private void txtProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProvinciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProvinciaActionPerformed
+    }//GEN-LAST:event_txtEmail1ActionPerformed
 
     private void txtNacionalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNacionalidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNacionalidadActionPerformed
 
-    private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-            
-    }//GEN-LAST:event_btnRegistrarMouseClicked
+    private void txtProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProvinciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProvinciaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -182,17 +194,18 @@ public class Registrarse extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtApellido1;
     private javax.swing.JTextField txtApellido2;
-    private javax.swing.JTextField txtCanton;
-    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEmail1;
     private javax.swing.JFormattedTextField txtFechaNacimiento;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNacionalidad;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtProvincia;
     private javax.swing.JTextField txtSangre;
+    private javax.swing.JTextField txtTel1;
     // End of variables declaration//GEN-END:variables
 }
