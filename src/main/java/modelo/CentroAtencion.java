@@ -1,6 +1,6 @@
 /**
  *
- * @author march
+ * @author Froyd-Melanie
  */
 package modelo;
 
@@ -19,6 +19,14 @@ public class CentroAtencion {
         this.tipo = "";
     }
     
+    /**
+     * Constructor de objetos tipo Centro de atención
+     * @param codigo
+     * @param nombre
+     * @param lugar
+     * @param capacidad
+     * @param tipo 
+     */
     public CentroAtencion(int codigo, String nombre, String lugar, int capacidad, String tipo) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -26,7 +34,11 @@ public class CentroAtencion {
         this.capacidad = capacidad;
         this.tipo = tipo;
     }
-
+    
+    /**
+     * Métodos accesores
+     * 
+     */
     public int getCodigo() {
         return codigo;
     }

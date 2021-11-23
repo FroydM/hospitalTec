@@ -16,8 +16,19 @@ public class Enfermero extends Funcionario{
         this.personalAdjunto=false;
         this.experiencia=false;
     }
-
-    public Enfermero(boolean personalAdjunto, boolean experiencia, int pCedula, String pNombre, String pApellido1, String pApellido2, String pTipo, LocalDate pFechaIngreso, Area pArea) {
+    /**
+     * Constructor de objetos tipo Enfermero
+     * @param personalAdjunto, indica si el enfermero tiene personal a cargo.
+     * @param experiencia, indica si tienen experiencia en capacitaciones.
+     * @param pCedula
+     * @param pNombre
+     * @param pApellido1
+     * @param pApellido2
+     * @param pTipo
+     * @param pFechaIngreso
+     * @param pArea 
+     */
+    public Enfermero(boolean personalAdjunto, boolean experiencia, int pCedula, String pNombre, String pApellido1, String pApellido2, TipoFuncionario pTipo, LocalDate pFechaIngreso, Area pArea) {
         super(pCedula, pNombre, pApellido1, pApellido2, pTipo, pFechaIngreso, pArea);
         this.personalAdjunto = personalAdjunto;
         this.experiencia = experiencia;

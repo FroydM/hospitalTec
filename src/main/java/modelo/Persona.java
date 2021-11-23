@@ -11,6 +11,13 @@ public class Persona {
     private String apellido1;
     private String apellido2;
     
+    public Persona(){
+        this.cedula=0;
+        this.nombre="";
+        this.apellido1="";
+        this.apellido2="";
+    }
+    
     /**
      * Constructor de objetos tipo persona
      * @param pCedula
@@ -25,7 +32,11 @@ public class Persona {
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
     }
-
+    
+    /**
+     * Métodos accesores
+     * 
+     */
     public int getCedula() {
         return cedula;
     }
