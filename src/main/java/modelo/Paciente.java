@@ -14,18 +14,19 @@ public class Paciente extends Persona{
     private String tipoSangre;
     private String nacionaliad;
     private String residencia;
+    private String correo;
     private LinkedList<Integer> listaTelefono;
     private LinkedList<Vacuna> listaVacuna;
     
     public Paciente(){
-        
+        super(0, "", "", "");
         LinkedList<Integer> telefono = new LinkedList<>();
         LinkedList<Vacuna> vacuna = new LinkedList<>();
-        
         this.fechaNacimiento=null;
         this.tipoSangre="";
         this.nacionaliad="";
         this.residencia="";
+        this.correo="";
     }
     /**
      * Constructor de objetos tipo Paciente
@@ -40,9 +41,9 @@ public class Paciente extends Persona{
      * @param pApellido1
      * @param pApellido2 
      */
-
-    public Paciente(LocalDate pFechaNacimiento, String pTipoSangre, String pNacionaliad, String pResidencia, 
-            Integer pTelefono, Vacuna pVacuna, int pCedula, String pNombre, String pApellido1, String pApellido2) {
+    public Paciente(LocalDate fechaNacimiento, String tipoSangre, String nacionaliad, String residencia, 
+                    Integer pTelefono, Vacuna pVacuna, int pCedula, String pNombre, String pApellido1, 
+                    String pApellido2,String correo) {
         super(pCedula, pNombre, pApellido1, pApellido2);
         
         LinkedList<Integer> listaTelefono = new LinkedList<>();
@@ -54,6 +55,7 @@ public class Paciente extends Persona{
         this.residencia = residencia;
         listaTelefono.append(pTelefono);
         listaVacuna.append(pVacuna);
+
     }
 
     public LocalDate getFechaNacimiento() {
@@ -114,5 +116,26 @@ public class Paciente extends Persona{
     public void setVacuna(Vacuna vacuna) {
         
     }
+
   //*********************************************************************** 
+
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    @Override
+   public String toString() {
+       String msg = super.toString();
+       msg += "Fecha Nacimiento: " +getFechaNacimiento().toString() + "\n";
+       msg += "tipoSangre: "+getTipoSangre() + "\n";
+       msg += "Nacionalidad: " +getNacionaliad() + "\n";
+       msg += "Residencia: " +getResidencia() +"\n";
+       msg += "Correo electronico:" + getCorreo() + "\n";
+       return msg;
+   }
+
 }
