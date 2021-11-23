@@ -39,7 +39,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         Diagnostico = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        itemTratamiento = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,8 +121,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu3.add(Diagnostico);
 
-        jMenuItem6.setText("Tratamiento");
-        jMenu3.add(jMenuItem6);
+        itemTratamiento.setText("Tratamiento");
+        itemTratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemTratamientoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(itemTratamiento);
 
         jMenuItem7.setText("Hospitalizaciones");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -207,6 +212,13 @@ public class Principal extends javax.swing.JFrame {
         forma.show();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void itemTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTratamientoActionPerformed
+        // TODO add your handling code here:
+        ConsultaTratamiento forma = new ConsultaTratamiento();
+        this.PanelP.add(forma);
+        forma.show();
+    }//GEN-LAST:event_itemTratamientoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -246,6 +258,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Diagnostico;
     private javax.swing.JPanel PanelP;
+    private javax.swing.JMenuItem itemTratamiento;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -255,7 +268,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }

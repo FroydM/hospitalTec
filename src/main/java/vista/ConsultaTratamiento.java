@@ -5,12 +5,12 @@ package vista;
  *
  * @author SITARE
  */
-public class ConsultaTratamameinto extends javax.swing.JInternalFrame {
+public class ConsultaTratamiento extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CrearCita
      */
-    public ConsultaTratamameinto() {
+    public ConsultaTratamiento() {
         initComponents();
     }
 
