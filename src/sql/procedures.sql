@@ -115,15 +115,16 @@ CREATE PROCEDURE [insertarEnfermero]
 AS BEGIN 
 IF (not exists(SELECT identificacion FROM PERSONA WHERE identificacion = @identificacion)) AND 
 	(NOT EXISTS (SELECT identificacion FROM FUNCIONARIO WHERE identificacion = @identificacion))
-	
-INSERT INTO PERSONA(identificacion,nombre,apellido1,apellido2) VALUES (@identificacion,@nombre,@apellido1,@apellido2)
-INSERT INTO FUNCIONARIO(identificacion,tipo,fechaIngreso,areaTrabajo) VALUES (@identificacion,@tipo,@fechaIngreso,@areaTrabajo)
-INSERT INTO ENFERMERO(identificacion,isCapacitacionExperiencia,isJefeExperiencia) VALUES (@identificacion,@isCapacitacionExperiencia,@isJefeExperiencia)
-return(1)
-
+BEGIN 
+	INSERT INTO PERSONA(identificacion,nombre,apellido1,apellido2) VALUES (@identificacion,@nombre,@apellido1,@apellido2)
+	INSERT INTO FUNCIONARIO(identificacion,tipo,fechaIngreso,areaTrabajo) VALUES (@identificacion,@tipo,@fechaIngreso,@areaTrabajo)
+	INSERT INTO ENFERMERO(identificacion,isCapacitacionExperiencia,isJefeExperiencia) VALUES (@identificacion,@isCapacitacionExperiencia,@isJefeExperiencia)
+	return(1)
+END
 ELSE
-
-RETURN(0)
+	BEGIN
+		RETURN(0)
+	END
 END
 GO
 
