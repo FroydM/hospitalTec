@@ -42,7 +42,7 @@ public class Area {
         }
     }
     
-    public LinkedList<Area> getListado() {
+    public static LinkedList<Area> getListado() {
         try {
             return AreaTrabajoDAO.obtener();
         } catch (SQLException e) {

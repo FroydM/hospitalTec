@@ -6,12 +6,15 @@ package aplicacion;
 import modelo.CentroAtencion;
 import modelo.LinkedList;
 import dao.TribunalSupremoEleccionesDAO;
+import modelo.Area;
 public class Aplicacion {
    public static void main(String[] args){
         
         try {
             
-            CentroAtencion newCentro = new CentroAtencion("Hospital La Carid","San Jose,San jose",500,"Hospital");
+
+            CentroAtencion newCentro = new CentroAtencion("Chiriqui","David,Chiriqui",600,"Hospital");
+
             if(newCentro.guardar()){
                 System.out.println("Exito al guardar area");
             }
@@ -22,5 +25,10 @@ public class Aplicacion {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
+        
+        Area newArea = new Area(1,"Ginecologia");
+        newArea.guardar();
+        //System.out.println(Area.getListado());
+        
     }
 }
