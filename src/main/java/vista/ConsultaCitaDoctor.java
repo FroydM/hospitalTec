@@ -5,12 +5,12 @@ package vista;
  *
  * @author SITARE
  */
-public class ConsultaDiagnosticos extends javax.swing.JInternalFrame {
+public class ConsultaCitaDoctor extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CrearCita
      */
-    public ConsultaDiagnosticos() {
+    public ConsultaCitaDoctor() {
         initComponents();
     }
 
@@ -27,7 +27,7 @@ public class ConsultaDiagnosticos extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbDiagnosticoDoctor = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cdFechaInicio = new com.toedter.calendar.JDateChooser();
@@ -37,10 +37,16 @@ public class ConsultaDiagnosticos extends javax.swing.JInternalFrame {
         cbEspecialidad = new javax.swing.JComboBox<>();
         cbEstado = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JTextField();
+        txtNombrePaciente1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtIdentificacion1 = new javax.swing.JTextField();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setClosable(true);
-        setTitle("CONSULTA DIAGNOSTICO");
+        setTitle("CONSULTA CITA");
         setMaximumSize(new java.awt.Dimension(32767, 32767));
         setMinimumSize(new java.awt.Dimension(75, 31));
         setPreferredSize(new java.awt.Dimension(828, 557));
@@ -51,57 +57,59 @@ public class ConsultaDiagnosticos extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("CONSULTA DE DIAGNOSTICOS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 270, 40));
+        jLabel1.setText("CONSULTA DE LAS CITAS");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 190, 40));
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, -1, -1));
 
-        tbDiagnosticoDoctor.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Identificacion", "Paciente", "ID Cita", "Nombre", "Nivel", "Observaciones"
+                "ID", "Especialidad", "Fecha Cita", "Observaciones", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tbDiagnosticoDoctor);
-        if (tbDiagnosticoDoctor.getColumnModel().getColumnCount() > 0) {
-            tbDiagnosticoDoctor.getColumnModel().getColumn(0).setResizable(false);
-            tbDiagnosticoDoctor.getColumnModel().getColumn(1).setResizable(false);
-            tbDiagnosticoDoctor.getColumnModel().getColumn(2).setResizable(false);
-            tbDiagnosticoDoctor.getColumnModel().getColumn(3).setResizable(false);
-            tbDiagnosticoDoctor.getColumnModel().getColumn(4).setResizable(false);
-            tbDiagnosticoDoctor.getColumnModel().getColumn(5).setResizable(false);
+        jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 750, 200));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 750, 200));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Desde:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Hasta:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
         jPanel1.add(cdFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 160, 30));
         jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 160, 30));
 
-        jLabel4.setText("Nivel:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setText("Estado:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 50, 20));
 
-        jLabel5.setText("Nombre");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setText("Especialidad:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
 
         cbEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 170, 30));
+        jPanel1.add(cbEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 170, 30));
 
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(cbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 170, 30));
@@ -109,7 +117,22 @@ public class ConsultaDiagnosticos extends javax.swing.JInternalFrame {
         btnBuscar.setBackground(new java.awt.Color(0, 204, 51));
         btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnBuscar.setText("Buscar");
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 130, 40));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 130, 40));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setText("Total Registradas");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, -1, -1));
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, 60, 30));
+        jPanel1.add(txtNombrePaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 260, 30));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setText("Paciente:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setText("Identificación:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+        jPanel1.add(txtIdentificacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,8 +164,14 @@ public class ConsultaDiagnosticos extends javax.swing.JInternalFrame {
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
     public javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabel6;
+    public javax.swing.JLabel jLabel7;
+    public javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTable tbDiagnosticoDoctor;
+    public javax.swing.JTable jTable1;
+    public javax.swing.JTextField txtIdentificacion1;
+    public javax.swing.JTextField txtNombrePaciente1;
+    public javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
