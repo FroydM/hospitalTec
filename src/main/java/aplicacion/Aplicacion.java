@@ -1,30 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package aplicacion;
-import dao.PacienteDAO;
-import dao.AreaTrabajoDAO;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import modelo.Doctor;
-import modelo.Area;
-import modelo.LinkedList;
-import dao.TribunalSupremoEleccionesDAO;
 /**
  *
  * @author march
  */
+package aplicacion;
+import modelo.CentroAtencion;
+import modelo.LinkedList;
+import dao.TribunalSupremoEleccionesDAO;
 public class Aplicacion {
     public static void main(String[] args){
         
         try {
-            //PacienteDAO.annadirTelefono(117960697, 86875359);
-            LinkedList<Integer> listado = PacienteDAO.obtenerTelefonosById(117960697);
-            for(int index = 0; index < listado.getSize();index++) {
-                System.out.println(listado.getElement(index).toString());
+            
+            /**CentroAtencion newCentro = new CentroAtencion("Hospital Mexico","Uruca,San jose",600,"Hospital");
+            if(newCentro.guardar()){
+                System.out.println("Exito al guardar area");
             }
-            //TribunalSupremoEleccionesDAO.obtenerPacienteInfoByIdentificacion(117960697);
+            LinkedList<CentroAtencion> listado = CentroAtencion.getListado();
+            for(int item =0; item< listado.getSize();item++){
+                System.out.println(listado.getElement(item).toString());
+            }**/
         } catch (Exception e) {
             System.out.println(e.toString());
         }

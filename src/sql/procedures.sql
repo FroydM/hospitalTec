@@ -177,3 +177,56 @@ FROM            dbo.AREA_TRABAJO INNER JOIN
                          dbo.PERSONA ON dbo.FUNCIONARIO.identificacion = dbo.PERSONA.identificacion
 END
 GO
+
+CREATE PROCEDURE [addEspecialidadDoctor]
+@codigoMedico INT,
+@nombreEspecialidad VARCHAR(100)
+AS BEGIN
+INSERT INTO ESPECIALIDADES(codigoMedico,nombreEspecialidad) VALUES (@codigoMedico,@nombreEspecialidad) 
+END
+GO
+
+CREATE PROCEDURE [allEspecialidadesByCodigoMedico]
+@codigoMedico INT
+AS BEGIN
+SELECT nombreEspecialidad FROM ESPECIALIDADES WHERE codigoMedico = @codigoMedico
+END
+GO
+
+-------------------------------------------------------------------------------------------
+----------------------Gestion de Secretario------------------------------------------------
+-------------------------------------------------------------------------------------------
+CREATE PROCEDURE [insertarSecretario]
+@identificacion INT,
+@nombre VARCHAR(50),
+@apellido1 VARCHAR(50),
+@apellido2 VARCHAR(50),
+@tipo VARCHAR(50),
+@fechaIngreso DATE,
+@areaTrabajo INT
+AS BEGIN 
+IF ((not exists(SELECT identificacion FROM PERSONA WHERE identificacion = @identificacion)) AND 
+	(NOT EXISTS (SELECT identificacion FROM FUNCIONARIO WHERE identificacion = @identificacion)))
+	BEGIN
+	INSERT INTO PERSONA(identificacion,nombre,apellido1,apellido2) VALUES (@identificacion,@nombre,@apellido1,@apellido2)
+	INSERT INTO FUNCIONARIO(identificacion,tipo,fechaIngreso,areaTrabajo) VALUES (@identificacion,@tipo,@fechaIngreso,@areaTrabajo)
+	
+	return(1)
+	END
+ELSE
+	BEGIN
+		RETURN(0)
+	END
+END
+GO
+
+CREATE PROCEDURE [allSecretarios]
+
+AS BEGIN
+SELECT        dbo.PERSONA.identificacion, dbo.PERSONA.nombre, dbo.PERSONA.apellido1, dbo.PERSONA.apellido2, dbo.FUNCIONARIO.tipo, dbo.FUNCIONARIO.fechaIngreso, dbo.AREA_TRABAJO.id as 'idArea', 
+                         dbo.AREA_TRABAJO.nombre AS 'nombreArea'
+FROM            dbo.FUNCIONARIO INNER JOIN
+                         dbo.PERSONA ON dbo.FUNCIONARIO.identificacion = dbo.PERSONA.identificacion INNER JOIN
+                         dbo.AREA_TRABAJO ON dbo.FUNCIONARIO.areaTrabajo = dbo.AREA_TRABAJO.id WHERE dbo.FUNCIONARIO.tipo = 'Secretario' 
+END 
+GO

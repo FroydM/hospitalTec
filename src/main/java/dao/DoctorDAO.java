@@ -1,6 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ *
+ * @author MARCHENA - MELANIE
  */
 package dao;
 
@@ -14,13 +14,23 @@ import modelo.Doctor;
 import modelo.LinkedList;
 import modelo.TipoFuncionario;
 
-/**
- *
- * @author march
- */
+
 public class DoctorDAO {
+    /**
+     * Este metodo se encarga de agregar un nuevo doctor a la 
+     * base de dataos mediante un procedimiento de almacenado
+     * @param identificacion Numero de cedula del doctor
+     * @param nombre Nombre de doctor
+     * @param apellido1 Primer apellido de doctor
+     * @param apellido2 segundo apellido del doctor
+     * @param tipo Tipo de funcionario
+     * @param fechaIngreso Fecha de ingreso del funcionario
+     * @param areaTrabajo Area de trabajo del funcionario
+     * @param codigoMedico Codigo del doctor
+     * @throws SQLException 
+     */
     public static void insertar(int identificacion,String nombre,String apellido1,String apellido2,
-            String tipo,LocalDate fechaIngreso,int areaTrabajo,
+            TipoFuncionario tipo,LocalDate fechaIngreso,int areaTrabajo,
             int codigoMedico) throws SQLException{
         try {
             String urlConsulta = "{? = CALL insertarDoctor(?,?,?,?,?,?,?,?)}";
@@ -32,7 +42,7 @@ public class DoctorDAO {
             exe.setString("apellido2", apellido2);
             Date parseDate = Date.valueOf(fechaIngreso);
             exe.setDate("fechaIngreso", parseDate);
-            exe.setString("tipo", tipo);
+            exe.setString("tipo", "Doctor");
             exe.setInt("areaTrabajo", areaTrabajo);
             exe.setInt("codigoMedico", codigoMedico);
             exe.registerOutParameter(1, java.sql.Types.INTEGER);
@@ -44,10 +54,15 @@ public class DoctorDAO {
         } catch (SQLException e) {
             throw e;
         } finally {
-            
+            ConfigurationSQL.close();
         }
     }
-    
+    /**
+     * Este metodo se encarga llamar el procedimiento de 
+     * almacenado para obtener un listado de los doctores registrados
+     * @return Listado de doctores registrados
+     * @throws SQLException 
+     */
     public static LinkedList<Doctor> obtener() throws SQLException{
         try {
             String urlConsulta = "{CALL allDoctores}";
@@ -68,6 +83,54 @@ public class DoctorDAO {
                     tempDoctor.setArea(new Area(res.getInt("idArea"),res.getString("nombreArea")));
                     tempDoctor.setCodigo(res.getInt("codigoMedico"));
                     listado.append(tempDoctor);
+                }
+            }
+            return listado;
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            ConfigurationSQL.close();
+        }
+    }
+    /**
+     * Este metodo agrega una especialidad al medico en la base de datos
+     * @param codigoMedico Codigo del medico al que se realciona la especialidad
+     * @param especialidad Nombre de la especialidad
+     * @throws SQLException 
+     */
+    public static void annadirEspecialidad(int codigoMedico,String especialidad) throws SQLException {
+        try {
+            String urlConsulta = "{? = CALL addEspecialidadDoctor(?,?)}";
+            ConfigurationSQL.open();
+            CallableStatement exe = ConfigurationSQL.cn.prepareCall(urlConsulta);
+            exe.setInt("codigoMedico", codigoMedico);
+            exe.setString("nombreEspecialidad", especialidad);
+            exe.execute();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            ConfigurationSQL.close();
+        }
+    }
+    /**
+     * Esta funcion se encarga de obtener las especialidades por medico
+     * @param codigoMedico Codigo del medico para obtener las especialidades
+     * @return Listado de las especialidades
+     * @throws SQLException 
+     */
+    public static LinkedList<String> obtenerEspecialidadesByCodigoMedico(int codigoMedico) throws  SQLException {
+        try {
+            String urlConsulta = "{CALL allEspecialidadesByCodigoMedico(?)}";
+            ConfigurationSQL.open();
+            CallableStatement exe = ConfigurationSQL.cn.prepareCall(urlConsulta);
+            exe.setInt("codigoMedico", codigoMedico);
+            ResultSet res = exe.executeQuery();
+            LinkedList<String> listado = null;
+            if(res != null) {
+                listado = new LinkedList<>();
+                while(res.next()) {
+                          
+                    listado.append(res.getString("nombreEspecialidad"));
                 }
             }
             return listado;
