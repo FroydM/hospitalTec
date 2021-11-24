@@ -1,20 +1,21 @@
-
-package modelo;
-
-import java.time.LocalDate;
-
 /**
  *
  * @author Froyd-Melanie
  */
+package modelo;
+
+import java.time.LocalDate;
+import dao.PacienteDAO;
+import java.sql.SQLException;
+
 public class Paciente extends Persona{
     
     private LocalDate fechaNacimiento;
     private String tipoSangre;
     private String nacionaliad;
     private String residencia;
-    private String telefono;
-    private Vacuna vacuna;
+    private LinkedList<Integer> telefonos;
+    private LinkedList<Vacuna> vacunas;
     private String correo;
     public Paciente(){
         super(0, "", "", "");
@@ -22,8 +23,8 @@ public class Paciente extends Persona{
         this.tipoSangre="";
         this.nacionaliad="";
         this.residencia="";
-        this.telefono="";
-        this.vacuna=null;
+        this.telefonos=new LinkedList<>();
+        this.vacunas=new LinkedList<>();
     }
 
     public Paciente(LocalDate fechaNacimiento, String tipoSangre, String nacionaliad, String residencia, 
@@ -33,8 +34,61 @@ public class Paciente extends Persona{
         this.tipoSangre = tipoSangre;
         this.nacionaliad = nacionaliad;
         this.residencia = residencia;
-        this.telefono = null;
-        this.vacuna = null;
+        this.telefonos=new LinkedList<>();
+        this.vacunas =new LinkedList<>();
+    
+    }
+    public boolean guardar() {
+        try {
+            PacienteDAO.insertar(getCedula(), getNombre(), getApellido1(), getApellido2(), getTipoSangre(), fechaNacimiento, nacionaliad, residencia, correo);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public static LinkedList<Paciente> getListado() {
+        try {
+            return PacienteDAO.obtener();
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
+    public boolean agregarTelefono(int telefono){
+        try {
+            PacienteDAO.annadirTelefono(getCedula(),telefono);
+            actualizarTelefonos();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public boolean agregarVacuna(String nombre,String famaceutica,String numeroLote) {
+        try {
+            PacienteDAO.annadirVacuna(getCedula(), LocalDate.now(), nombre, famaceutica, numeroLote);
+            actulizarVacunas();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public void actualizarTelefonos() {
+        try {
+            telefonos = PacienteDAO.obtenerTelefonosById(getCedula());
+        } catch (SQLException e) {
+            System.out.println("Error al cargar telefonos");
+        }
+    }
+    
+    public void actulizarVacunas() {
+        try {
+            vacunas = PacienteDAO.obtenerVacunasById(getCedula());
+        } catch (SQLException e) {
+            System.out.println("Error al cargar vacunas");
+        }
     }
 
     public LocalDate getFechaNacimiento() {
@@ -53,12 +107,12 @@ public class Paciente extends Persona{
         return residencia;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public LinkedList<Integer> getTelefonos() {
+        return telefonos;
     }
 
-    public Vacuna getVacuna() {
-        return vacuna;
+    public LinkedList<Vacuna> getVacunas() {
+        return vacunas;
     }
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
@@ -75,14 +129,6 @@ public class Paciente extends Persona{
 
     public void setResidencia(String residencia) {
         this.residencia = residencia;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public void setVacuna(Vacuna vacuna) {
-        this.vacuna = vacuna;
     }
 
     public String getCorreo() {

@@ -68,7 +68,18 @@ public class Funcionario extends Persona {
     @Override
     public String toString() {
         String msg = super.toString();
-        msg += "Tipo: " +getTipo() + "\n";
+        switch(getTipo()){
+            case DOCTOR:
+                msg += "Tipo: Doctor \n";
+                break;
+            case ENFERMERO:
+                msg += "Tipo: Enfermero \n";
+                break;
+            case SECRETARIO:
+                msg += "Tipo: Secretario \n";
+                break;
+        }
+        
         msg += "Fecha ingreso: " + getFechaIngreso().toString() + "\n";
         msg += "Area: { " + area.toString()+"}\n";
         return msg;
