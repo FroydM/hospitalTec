@@ -115,7 +115,7 @@ CREATE PROCEDURE [insertarEnfermero]
 AS BEGIN 
 IF (not exists(SELECT identificacion FROM PERSONA WHERE identificacion = @identificacion)) AND 
 	(NOT EXISTS (SELECT identificacion FROM FUNCIONARIO WHERE identificacion = @identificacion))
-
+	
 INSERT INTO PERSONA(identificacion,nombre,apellido1,apellido2) VALUES (@identificacion,@nombre,@apellido1,@apellido2)
 INSERT INTO FUNCIONARIO(identificacion,tipo,fechaIngreso,areaTrabajo) VALUES (@identificacion,@tipo,@fechaIngreso,@areaTrabajo)
 INSERT INTO ENFERMERO(identificacion,isCapacitacionExperiencia,isJefeExperiencia) VALUES (@identificacion,@isCapacitacionExperiencia,@isJefeExperiencia)
@@ -308,5 +308,47 @@ SELECT        dbo.CITAS_LOG.idCita, dbo.CITAS_LOG.fechaHora, dbo.CITAS_LOG.estad
 FROM            dbo.CITAS_LOG INNER JOIN
                          dbo.USUARIOS ON dbo.CITAS_LOG.usuario = dbo.USUARIOS.userCode INNER JOIN
                          dbo.PERSONA ON dbo.USUARIOS.userCode = dbo.PERSONA.identificacion
+END
+GO
+-------------------------------------------------------------------------------------------
+----------------------Gestion de Hospitalizaciones-----------------------------------------
+-------------------------------------------------------------------------------------------
+CREATE PROCEDURE [insertTratamiento]
+@idDiagnostico INT,
+@nombreTratamiento VARCHAR(200),
+@cantidadDosis VARCHAR(50),
+@tipoTratamiento VARCHAR(50)
+
+AS BEGIN
+INSERT INTO TRATAMIENTOS(idDiagnostico,nombreTratamiento,cantidadDosis,tipoTratamiento) VALUES (@idDiagnostico,@nombreTratamiento,@cantidadDosis,@tipoTratamiento)
+
+END 
+GO
+
+CREATE PROCEDURE [allTratamientos]
+@idDiagnostico INT
+AS BEGIN
+SELECT id,nombreTratamiento,cantidadDosis,tipoTratamiento FROM TRATAMIENTOS WHERE idDiagnostico = @idDiagnostico
+END
+GO
+
+CREATE PROCEDURE [addDiagostico] 
+@nombre VARCHAR(100)
+AS BEGIN
+INSERT INTO CATALOGO_DIAGNOSTICOS(nombre) VALUES(@nombre)
+END
+GO
+
+CREATE PROCEDURE [allCatalogoDiagnostico]
+
+AS BEGIN 
+SELECT id,nombre FROM CATALOGO_DIAGNOSTICOS
+END 
+GO
+
+CREATE PROCEDURE [tratamientosByDignostico]
+@idDiagnostico INT
+AS BEGIN
+SELECT * FROM TRATAMIENTOS WHERE idDiagnostico = @idDiagnostico
 END
 GO

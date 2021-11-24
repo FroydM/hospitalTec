@@ -95,3 +95,21 @@ usuario INT FOREIGN KEY (usuario) REFERENCES USUARIOS(userCode) NOT NULL,
 estadoAnterior VARCHAR(150) NOT NULL,
 estadoActualizado VARCHAR(150) NOT NULL
 );
+
+-------------------------------------------------------------------------------------------
+----------------------Hospitalizaciones----------------------------------------------------
+-------------------------------------------------------------------------------------------
+
+CREATE TABLE [CATALOGO_DIAGNOSTICOS](
+id INT IDENTITY(1,1),
+nombre VARCHAR(100) not null
+primary key(id)
+);
+
+CREATE TABLE [TRATAMIENTOS] (
+id  INT IDENTITY(1,1),
+idDiagnostico INT FOREIGN KEY (idDiagnostico) REFERENCES CATALOGO_DIAGNOSTICOS(id),
+nombreTratamiento VARCHAR(200) not null,
+cantidadDosis VARCHAR(50) not null,
+tipoTratamiento VARCHAR(50) not null
+);
