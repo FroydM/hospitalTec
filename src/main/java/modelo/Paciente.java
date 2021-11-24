@@ -7,10 +7,6 @@ package modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-
-package modelo;
-
 import java.time.LocalDate;
 import dao.PacienteDAO;
 import dao.TribunalSupremoEleccionesDAO;
@@ -52,7 +48,7 @@ public class Paciente extends Persona{
      * @param pApellido2 
      */
     public Paciente(LocalDate fechaNacimiento, String tipoSangre, String nacionaliad, String residencia, 
-                    Integer pTelefono, Vacuna pVacuna, int pCedula, String pNombre, String pApellido1, 
+                     int pCedula, String pNombre, String pApellido1, 
                     String pApellido2,String correo) {
         super(pCedula, pNombre, pApellido1, pApellido2);
         

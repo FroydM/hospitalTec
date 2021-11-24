@@ -7,7 +7,7 @@ import modelo.CentroAtencion;
 import modelo.LinkedList;
 import dao.TribunalSupremoEleccionesDAO;
 public class Aplicacion {
-   /** public static void main(String[] args){
+   public static void main(String[] args){
         
         try {
             
@@ -22,5 +22,5 @@ public class Aplicacion {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-    }**/
+    }
 }
