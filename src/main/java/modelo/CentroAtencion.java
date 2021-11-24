@@ -3,7 +3,7 @@
  * @author Froyd-Melanie
  */
 package modelo;
- import dao.CentroAtencionDAO;
+import dao.CentroAtencionDAO;
 import java.sql.SQLException;
 
 public class CentroAtencion {
@@ -19,6 +19,13 @@ public class CentroAtencion {
         this.lugar = "";
         this.capacidad = 0;
         this.tipo = "";
+    }
+    public CentroAtencion(String nombre, String lugar, int capacidad, String tipo) {
+        this.codigo = 0;
+        this.nombre = nombre;
+        this.lugar = lugar;
+        this.capacidad = capacidad;
+        this.tipo = tipo;
     }
     
     /**
@@ -51,6 +58,14 @@ public class CentroAtencion {
         }
     }
 
+    public static LinkedList<CentroAtencion> getListado(){
+        try {
+            return CentroAtencionDAO.obtener();
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
     public int getCodigo() {
         return codigo;
     }
@@ -100,9 +115,5 @@ public class CentroAtencion {
         msg += "Tipo: " + getTipo() +"\n";
         msg += "Capacidad: " + getCapacidad() +"\n";
         return msg;
-    }
-    
-    
-    
-    
+    }  
 }
