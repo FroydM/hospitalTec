@@ -1,34 +1,40 @@
+/**
+ *
+ * @author Froyd-Melanie
+ */
 
 package modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import dao.PacienteDAO;
+import dao.TribunalSupremoEleccionesDAO;
+import java.sql.SQLException;
 
-/**
- *
- * @author Froyd-Melanie
- */
 public class Paciente extends Persona{
     
     private LocalDate fechaNacimiento;
     private String tipoSangre;
     private String nacionaliad;
     private String residencia;
+    private LinkedList<Integer> telefonos;
+    private LinkedList<Vacuna> vacunas;
+
     private String correo;
-    private LinkedList<Integer> listaTelefono;
-    private LinkedList<Vacuna> listaVacuna;
     
     public Paciente(){
         super(0, "", "", "");
-        LinkedList<Integer> telefono = new LinkedList<>();
-        LinkedList<Vacuna> vacuna = new LinkedList<>();
-        this.fechaNacimiento=null;
+        this.fechaNacimiento=LocalDate.now();
         this.tipoSangre="";
         this.nacionaliad="";
         this.residencia="";
-        this.correo="";
+        this.telefonos=new LinkedList<>();
+        this.vacunas=new LinkedList<>();
+        this.correo = "";
     }
-    /**
+   
+ /**
      * Constructor de objetos tipo Paciente
      * @param pFechaNacimiento
      * @param pTipoSangre
@@ -42,7 +48,7 @@ public class Paciente extends Persona{
      * @param pApellido2 
      */
     public Paciente(LocalDate fechaNacimiento, String tipoSangre, String nacionaliad, String residencia, 
-                    Integer pTelefono, Vacuna pVacuna, int pCedula, String pNombre, String pApellido1, 
+                     int pCedula, String pNombre, String pApellido1, 
                     String pApellido2,String correo) {
         super(pCedula, pNombre, pApellido1, pApellido2);
         
@@ -53,9 +59,65 @@ public class Paciente extends Persona{
         this.tipoSangre = tipoSangre;
         this.nacionaliad = nacionaliad;
         this.residencia = residencia;
-        listaTelefono.append(pTelefono);
-        listaVacuna.append(pVacuna);
-
+        this.telefonos=new LinkedList<>();
+        this.vacunas =new LinkedList<>();
+        this.correo = correo;
+    }
+    public boolean guardar() {
+        try {
+            PacienteDAO.insertar(getCedula(), getNombre(), getApellido1(), getApellido2(), getTipoSangre(), fechaNacimiento, nacionaliad, residencia, correo);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public static LinkedList<Paciente> getListado() {
+        try {
+            return PacienteDAO.obtener();
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
+    public boolean agregarTelefono(int telefono){
+        try {
+            PacienteDAO.annadirTelefono(getCedula(),telefono);
+            actualizarTelefonos();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public boolean agregarVacuna(String nombre,String famaceutica,String numeroLote) {
+        try {
+            PacienteDAO.annadirVacuna(getCedula(), LocalDate.now(), nombre, famaceutica, numeroLote);
+            actulizarVacunas();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public void actualizarTelefonos() {
+        try {
+            telefonos = PacienteDAO.obtenerTelefonosById(getCedula());
+        } catch (SQLException e) {
+            System.out.println("Error al cargar telefonos");
+        }
+    }
+    
+    public void actulizarVacunas() {
+        try {
+            vacunas = PacienteDAO.obtenerVacunasById(getCedula());
+        } catch (SQLException e) {
+            System.out.println("Error al cargar vacunas");
+        }
+    }
+    
+    public static Paciente obtenerInfo(int cedula) {
+        return TribunalSupremoEleccionesDAO.obtenerPacienteInfoByIdentificacion(cedula);
     }
 
     public LocalDate getFechaNacimiento() {
@@ -73,26 +135,16 @@ public class Paciente extends Persona{
     public String getResidencia() {
         return residencia;
     }
-    //REVISAR SI ESTÁ BIEN **************************************************
-    public Integer getTelefono() {
-        try {
-            return listaTelefono.getElement();
-        } catch (Exception e) {
-            return null;
-        }
-        
+
+
+    public LinkedList<Integer> getTelefonos() {
+        return telefonos;
     }
 
-    public Vacuna getVacuna() {
-        try {
-            return listaVacuna.getElement();
-        } catch (Exception e) {
-            return null;
-        }
-        
+    public LinkedList<Vacuna> getVacunas() {
+        return vacunas;
     }
-    //FIN DE LA REVISIÓN *****************************************************
-    
+
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
@@ -108,17 +160,6 @@ public class Paciente extends Persona{
     public void setResidencia(String residencia) {
         this.residencia = residencia;
     }
-//No se porque no funciona el metodo *************************************
-    public void setTelefono(String telefono) {
-        //listaTelefono.setElement(telefono);
-    }
-
-    public void setVacuna(Vacuna vacuna) {
-        
-    }
-
-  //*********************************************************************** 
-
 
     public String getCorreo() {
         return correo;

@@ -56,9 +56,32 @@ public class Funcionario extends Persona {
     public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
-
+    
+    public LocalDate getFechaIngreso() {
+        return this.fechaIngreso;
+    }
+    
     public void setArea(Area area) {
         this.area = area;
     }
     
+    @Override
+    public String toString() {
+        String msg = super.toString();
+        switch(getTipo()){
+            case DOCTOR:
+                msg += "Tipo: Doctor \n";
+                break;
+            case ENFERMERO:
+                msg += "Tipo: Enfermero \n";
+                break;
+            case SECRETARIO:
+                msg += "Tipo: Secretario \n";
+                break;
+        }
+        
+        msg += "Fecha ingreso: " + getFechaIngreso().toString() + "\n";
+        msg += "Area: { " + area.toString()+"}\n";
+        return msg;
+    }
 }

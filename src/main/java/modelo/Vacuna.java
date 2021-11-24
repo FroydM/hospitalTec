@@ -11,17 +11,17 @@ public class Vacuna {
     
     private String nombre;
     private String farmaceutica;
-    private int lote;
+    private String lote;
     private LocalDate fechaAplicación;
     
     public Vacuna(){
         this.nombre="";
         this.farmaceutica="";
-        this.lote=0;
+        this.lote="";
         this.fechaAplicación= null;
     }
 
-    public Vacuna(String nombre, String farmaceutica, int lote, LocalDate fechaAplicación) {
+    public Vacuna(String nombre, String farmaceutica, String lote, LocalDate fechaAplicación) {
         this.nombre = nombre;
         this.farmaceutica = farmaceutica;
         this.lote = lote;
@@ -36,7 +36,7 @@ public class Vacuna {
         return farmaceutica;
     }
 
-    public int getLote() {
+    public String getLote() {
         return lote;
     }
 
@@ -52,7 +52,7 @@ public class Vacuna {
         this.farmaceutica = farmaceutica;
     }
 
-    public void setLote(int lote) {
+    public void setLote(String lote) {
         this.lote = lote;
     }
 

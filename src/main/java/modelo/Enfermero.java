@@ -1,12 +1,13 @@
-
-package modelo;
-
-import java.time.LocalDate;
-
 /**
  *
  * @author Froyd-Melanie
  */
+package modelo;
+
+import java.time.LocalDate;
+import dao.EnfermeroDAO;
+import java.sql.SQLException;
+
 public class Enfermero extends Funcionario{
     
     private boolean personalAdjunto;
@@ -33,7 +34,24 @@ public class Enfermero extends Funcionario{
         this.personalAdjunto = personalAdjunto;
         this.experiencia = experiencia;
     }
-
+    public boolean guardar(){
+        try {
+            EnfermeroDAO.insertar(this.getCedula(), this.getNombre(), getApellido1(), getApellido2(), 
+                    TipoFuncionario.ENFERMERO,getFechaIngreso(), 
+                    getArea().getCodigo(), experiencia, personalAdjunto);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public static LinkedList<Enfermero> getListado(){
+        try {
+            return EnfermeroDAO.obtener();
+        } catch (SQLException e) {
+            return null;
+        }
+    }
     public boolean getPersonalAdjunto() {
         return personalAdjunto;
     }
@@ -49,9 +67,11 @@ public class Enfermero extends Funcionario{
     public void setExperiencia(boolean experiencia) {
         this.experiencia = experiencia;
     }
-    
-    
-    
-    
-    
+    @Override
+    public String toString() {
+        String msg = super.toString();
+        msg += "Experiencia Capacitaciones: " + getExperiencia()+"\n";
+        msg += "Experiencia en adminstracion de personal: "+getPersonalAdjunto() + "\n";
+        return msg;
+    }
 }

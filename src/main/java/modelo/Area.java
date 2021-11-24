@@ -1,10 +1,11 @@
-
-package modelo;
-
 /**
  *
  * @author Froyd-Melanie
  */
+package modelo;
+
+import dao.AreaTrabajoDAO;
+import java.sql.SQLException;
 public class Area {
     
     private int codigo;
@@ -25,11 +26,30 @@ public class Area {
         this.nombre = pNombre;
     
     }
+
     
     /**
      * Métodos de accesoros
      * 
      */
+
+    public boolean guardar() {
+        try {
+            AreaTrabajoDAO.insertar(nombre);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public static LinkedList<Area> getListado() {
+        try {
+            return AreaTrabajoDAO.obtener();
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public int getCodigo() {
         return codigo;
     }

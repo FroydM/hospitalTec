@@ -12,6 +12,7 @@ public class SolicitarCita extends javax.swing.JInternalFrame {
      */
     public SolicitarCita() {
         initComponents();
+        
     }
 
     /**
@@ -28,7 +29,7 @@ public class SolicitarCita extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
-        cbEspecialida = new javax.swing.JComboBox<>();
+        cbEspecialidad = new javax.swing.JComboBox<>();
         dtCalendario = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObservaciones = new javax.swing.JTextArea();
@@ -36,7 +37,7 @@ public class SolicitarCita extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtIdCita = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -64,8 +65,8 @@ public class SolicitarCita extends javax.swing.JInternalFrame {
         btnCancelar.setText("Cancelar");
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 150, 40));
 
-        cbEspecialida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbEspecialida, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 250, 30));
+        cbEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 250, 30));
 
         dtCalendario.setDateFormatString("dd/ MMM/yyyy HH:mm");
         dtCalendario.setMinSelectableDate(new java.util.Date(-62135747884000L));
@@ -111,7 +112,7 @@ public class SolicitarCita extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Especialidad");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 90, -1));
+        jPanel1.add(txtIdCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 90, -1));
 
         btnRegistrar.setBackground(new java.awt.Color(0, 204, 51));
         btnRegistrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -139,7 +140,7 @@ public class SolicitarCita extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnCancelar;
     public javax.swing.JButton btnRegistrar;
-    public javax.swing.JComboBox<String> cbEspecialida;
+    public javax.swing.JComboBox<String> cbEspecialidad;
     public com.toedter.calendar.JDateChooser dtCalendario;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel11;
@@ -150,7 +151,7 @@ public class SolicitarCita extends javax.swing.JInternalFrame {
     public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable jTable1;
-    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField txtIdCita;
     public javax.swing.JTextArea txtObservaciones;
     // End of variables declaration//GEN-END:variables
 }
