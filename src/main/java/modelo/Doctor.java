@@ -5,12 +5,13 @@ package modelo;
  *
  * @author Froyd-Melanie
  */
-public class Doctor {
+public class Doctor extends Funcionario{
     
     private int codigo;
     private String especialidad;
     
     public Doctor(){
+        super();
         this.codigo=0;
         this.especialidad="";
     }
@@ -35,5 +36,10 @@ public class Doctor {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-    
+    @Override
+    public String toString() {
+        String msg = super.toString();
+        msg += "Codigo de medico: " +getCodigo();
+        return msg;
+    }
 }
