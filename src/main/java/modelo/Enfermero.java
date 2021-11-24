@@ -17,7 +17,7 @@ public class Enfermero extends Funcionario{
         this.experiencia=false;
     }
 
-    public Enfermero(boolean personalAdjunto, boolean experiencia, int pCedula, String pNombre, String pApellido1, String pApellido2, String pTipo, LocalDate pFechaIngreso, Area pArea) {
+    public Enfermero(boolean personalAdjunto, boolean experiencia, int pCedula, String pNombre, String pApellido1, String pApellido2, TipoFuncionario pTipo, LocalDate pFechaIngreso, Area pArea) {
         super(pCedula, pNombre, pApellido1, pApellido2, pTipo, pFechaIngreso, pArea);
         this.personalAdjunto = personalAdjunto;
         this.experiencia = experiencia;

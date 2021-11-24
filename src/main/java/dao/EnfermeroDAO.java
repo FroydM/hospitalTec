@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import modelo.Area;
 import modelo.LinkedList;
 import modelo.Enfermero;
+import modelo.TipoFuncionario;
 
 
 public class EnfermeroDAO {
@@ -61,7 +62,7 @@ public class EnfermeroDAO {
                     tempEnfermero.setApellido1(res.getString("apellido1"));
                     tempEnfermero.setApellido2(res.getString("apellido2"));
                     tempEnfermero.setFechaIngreso(res.getDate("fechaIngreso").toLocalDate());
-                    tempEnfermero.setTipo(res.getString("tipo"));
+                    tempEnfermero.setTipo(TipoFuncionario.ENFERMERO);
                     tempEnfermero.setArea(new Area(res.getInt("idArea"),res.getString("nombreArea")));
                     tempEnfermero.setExperiencia(res.getBoolean("isCapacitacionExperiencia"));
                     tempEnfermero.setPersonalAdjunto(res.getBoolean("isJefeExperiencia"));

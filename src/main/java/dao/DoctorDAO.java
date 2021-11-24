@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import modelo.Area;
 import modelo.Doctor;
 import modelo.LinkedList;
+import modelo.TipoFuncionario;
 
 /**
  *
@@ -63,7 +64,7 @@ public class DoctorDAO {
                     tempDoctor.setApellido1(res.getString("apellido1"));
                     tempDoctor.setApellido2(res.getString("apellido2"));
                     tempDoctor.setFechaIngreso(res.getDate("fechaIngreso").toLocalDate());
-                    tempDoctor.setTipo(res.getString("tipo"));
+                    tempDoctor.setTipo(TipoFuncionario.DOCTOR);
                     tempDoctor.setArea(new Area(res.getInt("idArea"),res.getString("nombreArea")));
                     tempDoctor.setCodigo(res.getInt("codigoMedico"));
                     listado.append(tempDoctor);

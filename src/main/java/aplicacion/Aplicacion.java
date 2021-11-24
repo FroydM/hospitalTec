@@ -19,7 +19,7 @@ public class Aplicacion {
     public static void main(String[] args){
         
         try {
-            PacienteDAO.annadirTelefono(117960697, 86875359);
+            //PacienteDAO.annadirTelefono(117960697, 86875359);
             LinkedList<Integer> listado = PacienteDAO.obtenerTelefonosById(117960697);
             for(int index = 0; index < listado.getSize();index++) {
                 System.out.println(listado.getElement(index).toString());
