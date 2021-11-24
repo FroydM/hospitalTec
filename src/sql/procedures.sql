@@ -230,3 +230,83 @@ FROM            dbo.FUNCIONARIO INNER JOIN
                          dbo.AREA_TRABAJO ON dbo.FUNCIONARIO.areaTrabajo = dbo.AREA_TRABAJO.id WHERE dbo.FUNCIONARIO.tipo = 'Secretario' 
 END 
 GO
+-------------------------------------------------------------------------------------------
+----------------------Gestion de CITAS-----------------------------------------------------
+-------------------------------------------------------------------------------------------
+CREATE  PROCEDURE [registrarCita]
+@idCita INT,
+@idPaciente INT,
+@area INT,
+@fechaHora SMALLDATETIME,
+@observacion VARCHAR(500),
+@user INT
+AS BEGIN
+INSERT INTO CITAS(idCita,idPaciente,area,fechaHora,observacion,estado) VALUES (@idCita,@idPaciente,@area,@fechaHora,@observacion,'Registrada')
+INSERT INTO CITAS_LOG VALUES (@idCita,GETDATE(),@user,'No existe','Registrada')
+END
+GO
+
+CREATE PROCEDURE [actualizarCita]
+@idCita INT,
+@estado VARCHAR(150),
+@user INT
+AS BEGIN
+
+DECLARE @estadoAnterior AS VARCHAR(150)
+SELECT @estadoAnterior = [estado] FROM CITAS WHERE idCita=@idCita
+DECLARE @fechaCita AS SMALLDATETIME
+SELECT @fechaCita =  [fechaHora] FROM CITAS WHERE idCita = @idCita
+IF DATEDIFF(day,GETDATE(),@fechaCita) > 1 
+	BEGIN
+		IF ((@estadoAnterior <> 'Registrada' OR @estadoAnterior <> 'Asignada') AND @estado  = 'Realizado')
+			BEGIN
+				RETURN(0)
+			END
+		UPDATE  CITAS SET estado = @estado WHERE idCita = @idCita
+		INSERT INTO CITAS_LOG VALUES (@idCita,GETDATE(),@user,@estadoAnterior,@estado)
+		RETURN(1)
+	END
+ELSE 
+	BEGIN
+		RETURN(0)
+	END
+
+
+END
+GO
+
+CREATE PROCEDURE [allCitas]
+
+AS BEGIN
+SELECT        dbo.CITAS.idCita, dbo.PERSONA.identificacion, dbo.PERSONA.nombre, dbo.PERSONA.apellido1, dbo.PERSONA.apellido2, dbo.AREA_TRABAJO.nombre AS 'nombreArea', dbo.CITAS.fechaHora, dbo.CITAS.observacion, 
+                         dbo.CITAS.estado
+FROM            dbo.CITAS INNER JOIN
+                         dbo.AREA_TRABAJO ON dbo.CITAS.area = dbo.AREA_TRABAJO.id INNER JOIN
+                         dbo.PACIENTE ON dbo.CITAS.idPaciente = dbo.PACIENTE.identificacion INNER JOIN
+                         dbo.PERSONA ON dbo.PACIENTE.identificacion = dbo.PERSONA.identificacion
+END
+GO
+
+CREATE PROCEDURE [allCitasByIdentificacion]
+@idPaciente INT
+AS BEGIN 
+SELECT        dbo.CITAS.idCita, dbo.PERSONA.identificacion, dbo.PERSONA.nombre, dbo.PERSONA.apellido1, dbo.PERSONA.apellido2, dbo.AREA_TRABAJO.nombre AS 'nombreArea', dbo.CITAS.fechaHora, dbo.CITAS.observacion, 
+                         dbo.CITAS.estado
+FROM            dbo.CITAS INNER JOIN
+                         dbo.AREA_TRABAJO ON dbo.CITAS.area = dbo.AREA_TRABAJO.id INNER JOIN
+                         dbo.PACIENTE ON dbo.CITAS.idPaciente = dbo.PACIENTE.identificacion INNER JOIN
+                         dbo.PERSONA ON dbo.PACIENTE.identificacion = dbo.PERSONA.identificacion WHERE dbo.PACIENTE.identificacion = @idPaciente
+END
+GO
+
+CREATE PROCEDURE [allCitaLog]
+
+AS
+
+BEGIN
+SELECT        dbo.CITAS_LOG.idCita, dbo.CITAS_LOG.fechaHora, dbo.CITAS_LOG.estadoAnterior, dbo.CITAS_LOG.estadoActualizado, dbo.PERSONA.nombre, dbo.PERSONA.apellido1
+FROM            dbo.CITAS_LOG INNER JOIN
+                         dbo.USUARIOS ON dbo.CITAS_LOG.usuario = dbo.USUARIOS.userCode INNER JOIN
+                         dbo.PERSONA ON dbo.USUARIOS.userCode = dbo.PERSONA.identificacion
+END
+GO

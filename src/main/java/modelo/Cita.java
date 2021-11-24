@@ -1,7 +1,10 @@
 
 package modelo;
 
-import java.time.LocalDate;
+import java.sql.SQLDataException;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+
 
 /**
  *
@@ -11,16 +14,17 @@ public class Cita {
     
     private int id;
     private Area especialidad;
-    private LocalDate fechaAtencion;
+    private LocalDateTime fechaAtencion;
     private String nota;
     private String estado;
-    
+    private Paciente paciente;
     public Cita(){
         this.id=0;
-        this.especialidad=null;
+        this.especialidad= new Area();
         this.fechaAtencion=null;
         this.nota="";
         this.estado="";
+        this.paciente = new Paciente();
     }
     /**
      * Constructor de objetos tipo Cita
@@ -28,15 +32,19 @@ public class Cita {
      * @param especialidad
      * @param fechaAtencion
      * @param nota
-     * @param estado 
+     * @param estado
+     * @param paciente
      */
-    public Cita(int id, Area especialidad, LocalDate fechaAtencion, String nota, String estado) {
+    public Cita(int id, Area especialidad, LocalDateTime fechaAtencion, String nota, String estado,Paciente paciente) {
         this.id = id;
         this.especialidad = especialidad;
         this.fechaAtencion = fechaAtencion;
         this.nota = nota;
         this.estado = estado;
+        this.paciente = paciente;
+        
     }
+   
     
     /**
      * Métodos accesores
@@ -50,7 +58,7 @@ public class Cita {
         return especialidad;
     }
 
-    public LocalDate getFechaAtencion() {
+    public LocalDateTime getFechaAtencion() {
         return fechaAtencion;
     }
 
@@ -70,7 +78,7 @@ public class Cita {
         this.especialidad = especialidad;
     }
 
-    public void setFechaAtencion(LocalDate fechaAtencion) {
+    public void setFechaAtencion(LocalDateTime fechaAtencion) {
         this.fechaAtencion = fechaAtencion;
     }
 
@@ -80,6 +88,14 @@ public class Cita {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
     
     
