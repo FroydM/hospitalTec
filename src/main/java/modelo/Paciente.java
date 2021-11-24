@@ -6,6 +6,7 @@ package modelo;
 
 import java.time.LocalDate;
 import dao.PacienteDAO;
+import dao.TribunalSupremoEleccionesDAO;
 import java.sql.SQLException;
 
 public class Paciente extends Persona{
@@ -19,12 +20,13 @@ public class Paciente extends Persona{
     private String correo;
     public Paciente(){
         super(0, "", "", "");
-        this.fechaNacimiento=null;
+        this.fechaNacimiento=LocalDate.now();
         this.tipoSangre="";
         this.nacionaliad="";
         this.residencia="";
         this.telefonos=new LinkedList<>();
         this.vacunas=new LinkedList<>();
+        this.correo = "";
     }
 
     public Paciente(LocalDate fechaNacimiento, String tipoSangre, String nacionaliad, String residencia, 
@@ -36,7 +38,7 @@ public class Paciente extends Persona{
         this.residencia = residencia;
         this.telefonos=new LinkedList<>();
         this.vacunas =new LinkedList<>();
-    
+        this.correo = correo;
     }
     public boolean guardar() {
         try {
@@ -89,6 +91,10 @@ public class Paciente extends Persona{
         } catch (SQLException e) {
             System.out.println("Error al cargar vacunas");
         }
+    }
+    
+    public static Paciente obtenerInfo(int cedula) {
+        return TribunalSupremoEleccionesDAO.obtenerPacienteInfoByIdentificacion(cedula);
     }
 
     public LocalDate getFechaNacimiento() {
