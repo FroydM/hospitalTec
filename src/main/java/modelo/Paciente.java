@@ -5,12 +5,14 @@
 
 package modelo;
 
+import dao.CitaDAO;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import dao.PacienteDAO;
 import dao.TribunalSupremoEleccionesDAO;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class Paciente extends Persona{
     
@@ -94,6 +96,24 @@ public class Paciente extends Persona{
         try {
             PacienteDAO.annadirVacuna(getCedula(), LocalDate.now(), nombre, famaceutica, numeroLote);
             actulizarVacunas();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public boolean solicitarCita(int id,int area, LocalDateTime horaFecha,String observacion,int usuario) {
+        try {
+            CitaDAO.insertar(0, getCedula(), area, horaFecha, observacion, usuario);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public boolean cancelarCita(int idCita,int user){
+        try {
+            CitaDAO.actualizar(idCita, "Cancelada por paciente", user);
             return true;
         } catch (SQLException e) {
             return false;

@@ -1,6 +1,8 @@
 
 package modelo;
 
+import dao.CitaDAO;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 /**
@@ -36,6 +38,16 @@ public class Funcionario extends Persona {
         this.fechaIngreso = fechaIngreso;
         this.area = area;
     }
+    
+    public boolean asignarCita(int idCita,int user){
+        try {
+            CitaDAO.actualizar(idCita, "Asignada", user);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
     /**
      * Metodos accesores
      * 

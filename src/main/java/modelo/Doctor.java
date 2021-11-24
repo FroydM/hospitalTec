@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import dao.CitaDAO;
 import dao.DoctorDAO;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -62,6 +63,17 @@ public class Doctor extends Funcionario{
             return false;
         }
     }
+    
+    
+    public boolean atenderCita(int idCita,int user){
+        try {
+            CitaDAO.actualizar(idCita, "Realizada", user);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
     
     public void actualizarEspecialidades() {
         try {

@@ -68,3 +68,48 @@ codigoMedico INT FOREIGN KEY (codigoMedico) REFERENCES DOCTOR(codigoMedico),
 nombreEspecialidad VARCHAR(100) NOT NULL,
 PRIMARY KEY(nombreEspecialidad,codigoMedico)
 );
+
+
+CREATE TABLE [USUARIOS](
+userCode INT PRIMARY KEY FOREIGN KEY (userCode) REFERENCES PERSONA(identificacion) NOT NULL,
+contrasenna VARCHAR(30) NOT NULL,
+acceso VARCHAR(50) NOT NULL
+);
+
+-------------------------------------------------------------------------------------------
+----------------------Citas----------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+create TABLE [CITAS](
+idCita INT PRIMARY KEY NOT NULL,
+idPaciente INT FOREIGN KEY(idPaciente) REFERENCES PACIENTE(identificacion) NOT NULL,
+area INT  FOREIGN KEY (area) REFERENCES AREA_TRABAJO(id) NOT NULL,
+fechaHora SMALLDATETIME NOT NULL,
+observacion VARCHAR(500) NOT NULL,
+estado VARCHAR(150)
+);
+
+create TABLE [CITAS_LOG](
+idCita INT FOREIGN KEY (idCita) REFERENCES CITAS(idCita),
+fechaHora SMALLDATETIME NOT NULL,
+usuario INT FOREIGN KEY (usuario) REFERENCES USUARIOS(userCode) NOT NULL,
+estadoAnterior VARCHAR(150) NOT NULL,
+estadoActualizado VARCHAR(150) NOT NULL
+);
+
+-------------------------------------------------------------------------------------------
+----------------------Hospitalizaciones----------------------------------------------------
+-------------------------------------------------------------------------------------------
+
+CREATE TABLE [CATALOGO_DIAGNOSTICOS](
+id INT IDENTITY(1,1),
+nombre VARCHAR(100) not null
+primary key(id)
+);
+
+CREATE TABLE [TRATAMIENTOS] (
+id  INT IDENTITY(1,1),
+idDiagnostico INT FOREIGN KEY (idDiagnostico) REFERENCES CATALOGO_DIAGNOSTICOS(id),
+nombreTratamiento VARCHAR(200) not null,
+cantidadDosis VARCHAR(50) not null,
+tipoTratamiento VARCHAR(50) not null
+);
