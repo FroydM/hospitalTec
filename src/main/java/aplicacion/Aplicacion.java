@@ -11,10 +11,8 @@ public class Aplicacion {
    public static void main(String[] args){
         
         try {
-            
-
+           
             CentroAtencion newCentro = new CentroAtencion("Chiriqui","David,Chiriqui",600,"Hospital");
-
             if(newCentro.guardar()){
                 System.out.println("Exito al guardar area");
             }

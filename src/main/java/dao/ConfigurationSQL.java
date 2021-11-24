@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class ConfigurationSQL {
     protected static Connection cn;
-    private static final String USER = "sa";
+    private static final String USER = "tekie";
     private static final String PASSWORD = "Tek12345";
     
     /**
@@ -19,7 +19,7 @@ public class ConfigurationSQL {
      */
     protected static void open()throws SQLException{
 
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=dbHospitalTec;";
+        String url = "jdbc:sqlserver://marche.database.windows.net;databaseName=dbHospitalTec;";
         
         cn = DriverManager.getConnection(url,USER,PASSWORD);     
     }
