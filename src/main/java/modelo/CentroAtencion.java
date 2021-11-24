@@ -1,6 +1,6 @@
 /**
  *
- * @author march
+ * @author Froyd-Melanie
  */
 package modelo;
 import dao.CentroAtencionDAO;
@@ -28,6 +28,14 @@ public class CentroAtencion {
         this.tipo = tipo;
     }
     
+    /**
+     * Constructor de objetos tipo Centro de atención
+     * @param codigo
+     * @param nombre
+     * @param lugar
+     * @param capacidad
+     * @param tipo 
+     */
     public CentroAtencion(int codigo, String nombre, String lugar, int capacidad, String tipo) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -36,6 +44,11 @@ public class CentroAtencion {
         this.tipo = tipo;
     }
     
+    /**
+     * Métodos accesores
+     * 
+     */
+
     public boolean guardar() {
         try {
             CentroAtencionDAO.insertar(nombre, lugar, tipo, capacidad);
@@ -44,7 +57,7 @@ public class CentroAtencion {
             return false;
         }
     }
-    
+
     public static LinkedList<CentroAtencion> getListado(){
         try {
             return CentroAtencionDAO.obtener();

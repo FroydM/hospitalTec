@@ -2,6 +2,13 @@
  *
  * @author Froyd-Melanie
  */
+
+package modelo;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+
 package modelo;
 
 import java.time.LocalDate;
@@ -17,7 +24,9 @@ public class Paciente extends Persona{
     private String residencia;
     private LinkedList<Integer> telefonos;
     private LinkedList<Vacuna> vacunas;
+
     private String correo;
+    
     public Paciente(){
         super(0, "", "", "");
         this.fechaNacimiento=LocalDate.now();
@@ -28,10 +37,28 @@ public class Paciente extends Persona{
         this.vacunas=new LinkedList<>();
         this.correo = "";
     }
-
+   
+ /**
+     * Constructor de objetos tipo Paciente
+     * @param pFechaNacimiento
+     * @param pTipoSangre
+     * @param pNacionaliad
+     * @param pResidencia, lugar de vivienda
+     * @param pTelefono
+     * @param pVacuna
+     * @param pCedula
+     * @param pNombre
+     * @param pApellido1
+     * @param pApellido2 
+     */
     public Paciente(LocalDate fechaNacimiento, String tipoSangre, String nacionaliad, String residencia, 
-        int pCedula, String pNombre, String pApellido1, String pApellido2,String correo) {
+                    Integer pTelefono, Vacuna pVacuna, int pCedula, String pNombre, String pApellido1, 
+                    String pApellido2,String correo) {
         super(pCedula, pNombre, pApellido1, pApellido2);
+        
+        LinkedList<Integer> listaTelefono = new LinkedList<>();
+        LinkedList<Vacuna> listaVacuna = new LinkedList<>();
+        
         this.fechaNacimiento = fechaNacimiento;
         this.tipoSangre = tipoSangre;
         this.nacionaliad = nacionaliad;
@@ -113,6 +140,7 @@ public class Paciente extends Persona{
         return residencia;
     }
 
+
     public LinkedList<Integer> getTelefonos() {
         return telefonos;
     }
@@ -154,4 +182,5 @@ public class Paciente extends Persona{
        msg += "Correo electronico:" + getCorreo() + "\n";
        return msg;
    }
+
 }

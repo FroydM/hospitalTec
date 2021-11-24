@@ -22,7 +22,14 @@ public class Cita {
         this.nota="";
         this.estado="";
     }
-
+    /**
+     * Constructor de objetos tipo Cita
+     * @param id
+     * @param especialidad
+     * @param fechaAtencion
+     * @param nota
+     * @param estado 
+     */
     public Cita(int id, Area especialidad, LocalDate fechaAtencion, String nota, String estado) {
         this.id = id;
         this.especialidad = especialidad;
@@ -30,7 +37,11 @@ public class Cita {
         this.nota = nota;
         this.estado = estado;
     }
-
+    
+    /**
+     * Métodos accesores
+     * @return 
+     */
     public int getId() {
         return id;
     }

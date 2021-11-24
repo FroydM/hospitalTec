@@ -19,6 +19,11 @@ public class Doctor extends Funcionario{
         this.especialidad=new LinkedList<>();
     }
 
+    /**
+     * Constructor de objetos de tipo Doctor
+     * @param codigo, representa el código del doctor
+     * @param especialidad, es la especialidad del doctor
+     */
     public Doctor(int codigo) {
         this.codigo = codigo;
         this.especialidad =new LinkedList<>();
@@ -65,6 +70,12 @@ public class Doctor extends Funcionario{
             System.out.println("Error al actualizar especialidad");
         }
     }
+
+    /**
+     * Métodos accesores
+     *  
+     */
+
     public int getCodigo() {
         return codigo;
     }
