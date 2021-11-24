@@ -4,10 +4,13 @@
  */
 package aplicacion;
 import dao.PacienteDAO;
+import dao.AreaTrabajoDAO;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import modelo.Paciente;
+import modelo.Doctor;
+import modelo.Area;
 import modelo.LinkedList;
+import dao.TribunalSupremoEleccionesDAO;
 /**
  *
  * @author march
@@ -16,13 +19,14 @@ public class Aplicacion {
     public static void main(String[] args){
         
         try {
-            //PacienteDAO.insertar(301881098, "Emilio", "Loria", "Vargas", "O-", LocalDate.of(1953, 01, 8), "Costarricense", "Cartago,Paraiso", "loria.emilio07@gmail.com");
-            LinkedList<Paciente> listado = PacienteDAO.obtener();
+            PacienteDAO.annadirTelefono(117960697, 86875359);
+            LinkedList<Integer> listado = PacienteDAO.obtenerTelefonosById(117960697);
             for(int index = 0; index < listado.getSize();index++) {
                 System.out.println(listado.getElement(index).toString());
             }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            //TribunalSupremoEleccionesDAO.obtenerPacienteInfoByIdentificacion(117960697);
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
     }
 }

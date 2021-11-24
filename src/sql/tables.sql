@@ -53,7 +53,7 @@ areaTrabajo INT  FOREIGN KEY (areaTrabajo) REFERENCES AREA_TRABAJO(id)
 );
 
 CREATE TABLE [ENFERMERO](
-identificacion INT FOREIGN KEY (identificacion) REFERENCES FUNCIONARIO(identificacion),
+identificacion INT PRIMARY KEY FOREIGN KEY (identificacion) REFERENCES FUNCIONARIO(identificacion),
 isCapacitacionExperiencia BIT NOT NULL,
 isJefeExperiencia BIT NOT NULL,
 );

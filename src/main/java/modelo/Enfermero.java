@@ -38,9 +38,11 @@ public class Enfermero extends Funcionario{
     public void setExperiencia(boolean experiencia) {
         this.experiencia = experiencia;
     }
-    
-    
-    
-    
-    
+    @Override
+    public String toString() {
+        String msg = super.toString();
+        msg += "Experiencia Capacitaciones: " + getExperiencia()+"\n";
+        msg += "Experiencia en adminstracion de personal: "+getPersonalAdjunto() + "\n";
+        return msg;
+    }
 }
